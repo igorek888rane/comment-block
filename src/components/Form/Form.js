@@ -25,6 +25,10 @@ class Form {
         console.log(form.username.value);
         console.log(form.date.value);
         console.log(form.message.value);
+        form.username.value = ''
+        form.date.value = ''
+        form.message.value = ''
+
     }
 
     handleKeyDown(e, form) {
