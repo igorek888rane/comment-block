@@ -8,7 +8,6 @@ import getComments from "./utils/getComments";
 let comments = getComments()
 const commentArea = new CommentArea(comments)
 const form = new Form()
-
 document.querySelector('#app').innerHTML = `
        <div class="container">
             <div class="form_container ">
@@ -21,6 +20,8 @@ document.querySelector('#app').innerHTML = `
 `
 
 
+commentArea.addEventListeners()
 form.addEventListeners(form)
+
 
 

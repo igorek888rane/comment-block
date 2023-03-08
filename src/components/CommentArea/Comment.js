@@ -10,7 +10,7 @@ class CommentEl {
 
     _render() {
         return createElement(`
-            <div class='comment__item' data-id = ${this.comment.id}>
+            <div class='comment__item' id=${this.comment.id}>
                     <div class="comment__avatar">
                         ${this.comment.username.slice(0, 2).toUpperCase()}
                     </div>
@@ -21,8 +21,8 @@ class CommentEl {
                     </div>
                     <p class="comment__text">${this.comment.text}</p>
                     <div class="comment__action">
-                    <img id="#like" src=${like} alt="">
-                    <img id="#delete" src=${basket} alt="">
+                    <img  class="comment__like" src=${like} alt="">
+                    <img data-id=${this.comment.id} class="comment__delete" src=${basket} alt="">
                     </div>
                 </div>
             </div>
