@@ -5,6 +5,14 @@ import Form from "./components/Form/Form";
 
 let form = new Form()
 
+
 document.querySelector('#app').innerHTML = `
-${form.elem}
+        <div class="form_container container">
+            ${form.elem.outerHTML}
+         </div>
 `
+
+
+form.addEventListeners(form)
+
+

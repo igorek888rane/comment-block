@@ -15,7 +15,7 @@ class TextArea {
                 <img src=${send} alt="send message"/>
             </button>
         </div>
-        `).outerHTML
+        `)
     }
 
     get elem() {

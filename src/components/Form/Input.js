@@ -17,7 +17,7 @@ class Input {
             name =${name} 
             placeholder=${placeholder}>
         </div>
-        `).outerHTML
+        `)
     }
 
     get elem() {
