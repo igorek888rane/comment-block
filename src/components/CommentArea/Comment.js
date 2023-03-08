@@ -8,10 +8,10 @@ class CommentEl {
 
     _render() {
         return createElement(`
-            <div class='comment__item'>
+            <div class='comment__item' data-id = ${this.comment.id}>
                 <div class="comment__name">${this.comment.username}</div>
                 <div class="comment__text">${this.comment.text}</div>
-                <div class="comment__date">${this.comment.date?this.comment.date:new Date().getFullYear()}</div>
+                <div class="comment__date">${this.comment.date ? this.comment.date : new Date().getFullYear()}</div>
             </div>
         `)
     }

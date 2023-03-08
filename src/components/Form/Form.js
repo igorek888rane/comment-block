@@ -7,7 +7,7 @@ class Form {
     _render() {
         const inputName = new Input('username', 'text', 'Enter:username', 'Username')
         const inputDate = new Input('date', 'date', '', 'Date')
-        const textArea = new TextArea('message', 'Enter-message')
+        const textArea = new TextArea('text', 'Enter-message')
 
         return createElement(`
             <form  class="form" name = 'comment'>
@@ -24,19 +24,22 @@ class Form {
     handleSubmit(e) {
         e.preventDefault()
         const form = document.forms.comment
-        if (form.username.value && form.message.value) {
-            console.log(form.username.value);
-            console.log(form.date.value);
-            console.log(form.message.value);
-            document.querySelector('.comment').append(new CommentEl({
+        if (form.username.value && form.text.value) {
+            let comments = localStorage.getItem('comments')
+                ? JSON.parse(localStorage.getItem('comments'))
+                : []
+            const comment = {
                 id: Date.now(),
                 username: form.username.value,
-                text: form.message.value,
+                text: form.text.value,
                 date: form.date.value
-            }).elem)
+            }
+            comments.push(comment)
+            localStorage.setItem('comments', JSON.stringify(comments))
+            document.querySelector('.comment').append(new CommentEl(comment).elem)
             form.username.value = ''
             form.date.value = ''
-            form.message.value = ''
+            form.text.value = ''
         }
 
     }

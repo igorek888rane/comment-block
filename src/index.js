@@ -6,12 +6,7 @@ import CommentArea from "./components/CommentArea/CommentArea";
 
 let comments = localStorage.getItem('comments')
     ? JSON.parse(localStorage.getItem('comments'))
-    : [
-        {id: 1, username: 'Andre', text: 'Hi'},
-        {id: 2, username: 'Vito', text: 'Hello'},
-        {id: 3, username: 'Vito', text: 'Hello'},
-        {id: 4, username: 'Vito', text: 'Hello'}
-    ]
+    : []
 const commentArea = new CommentArea(comments)
 const form = new Form()
 
