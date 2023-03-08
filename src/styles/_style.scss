@@ -1,4 +1,17 @@
 body {
-  font-family: 'Monserrat','cursive';
+  font-family: 'Monserrat', 'cursive';
+  background-color: $backgroundColor;
+  color: $textColor;
+}
+h1,h2{
+  text-align: center;
+}
+#app {
+  width: 100vw;
+  height: 100vh;
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 1440px;
+}
