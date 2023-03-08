@@ -2,9 +2,7 @@ body {
   font-family: 'Monserrat', 'cursive';
   background-color: $backgroundColor;
   color: $textColor;
-}
-h1,h2{
-  text-align: center;
+  font-size: 20px;
 }
 #app {
   width: 100vw;

@@ -2,11 +2,10 @@ import './index.html';
 import './index.scss';
 import Form from "./components/Form/Form";
 import CommentArea from "./components/CommentArea/CommentArea";
+import getComments from "./utils/getComments";
 
 
-let comments = localStorage.getItem('comments')
-    ? JSON.parse(localStorage.getItem('comments'))
-    : []
+let comments = getComments()
 const commentArea = new CommentArea(comments)
 const form = new Form()
 

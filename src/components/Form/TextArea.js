@@ -1,4 +1,4 @@
-import createElement from '../../utils/index'
+import createElement from '../../utils/createElement'
 import send from '../../img/form/send_icon.svg'
 
 class TextArea {

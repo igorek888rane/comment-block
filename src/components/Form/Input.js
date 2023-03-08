@@ -1,4 +1,4 @@
-import createElement from '../../utils/index'
+import createElement from '../../utils/createElement'
 
 class Input {
     constructor(name, type, placeholder, label) {

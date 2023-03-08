@@ -1,7 +1,8 @@
-import createElement from '../../utils/index'
+import createElement from '../../utils/createElement'
 import Input from "./Input";
 import TextArea from "./TextArea";
 import CommentEl from "../CommentArea/Comment";
+import getComments from "../../utils/getComments";
 
 class Form {
     _render() {
@@ -25,9 +26,7 @@ class Form {
         e.preventDefault()
         const form = document.forms.comment
         if (form.username.value && form.text.value) {
-            let comments = localStorage.getItem('comments')
-                ? JSON.parse(localStorage.getItem('comments'))
-                : []
+            let comments = getComments()
             const comment = {
                 id: Date.now(),
                 username: form.username.value,
