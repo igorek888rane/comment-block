@@ -1,12 +1,14 @@
 import createElement from '../../utils/index'
 import Input from "./Input";
 import TextArea from "./TextArea";
+import CommentEl from "../CommentArea/Comment";
 
 class Form {
     _render() {
         const inputName = new Input('username', 'text', 'Enter:username', 'Username')
         const inputDate = new Input('date', 'date', '', 'Date')
         const textArea = new TextArea('message', 'Enter-message')
+
         return createElement(`
             <form  class="form" name = 'comment'>
                 ${inputName.elem.outerHTML}
@@ -22,12 +24,20 @@ class Form {
     handleSubmit(e) {
         e.preventDefault()
         const form = document.forms.comment
-        console.log(form.username.value);
-        console.log(form.date.value);
-        console.log(form.message.value);
-        form.username.value = ''
-        form.date.value = ''
-        form.message.value = ''
+        if (form.username.value && form.message.value) {
+            console.log(form.username.value);
+            console.log(form.date.value);
+            console.log(form.message.value);
+            document.querySelector('.comment').append(new CommentEl({
+                id: Date.now(),
+                username: form.username.value,
+                text: form.message.value,
+                date: form.date.value
+            }).elem)
+            form.username.value = ''
+            form.date.value = ''
+            form.message.value = ''
+        }
 
     }
 

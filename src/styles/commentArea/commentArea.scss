@@ -1,0 +1,17 @@
+.comment_container {
+  .comment {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 15px;
+    max-width: 500px;
+    margin: 15px auto;
+    padding: 25px;
+    background-color: #ffff;
+
+
+    .comment__item {
+      //height: 300px;
+    }
+
+  }
+}
