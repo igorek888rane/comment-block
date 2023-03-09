@@ -6,7 +6,12 @@ import getComments from "../../utils/getComments";
 
 class Form {
     _render() {
-        const inputName = new Input('username', 'text', 'Enter:username', 'Username')
+        const inputName =
+            new Input(
+                'username',
+                'text',
+                'Enter:username',
+                'Username')
         const inputDate = new Input('date', 'date', '', 'Date')
         const textArea = new TextArea('text', 'Enter-message')
 
@@ -59,18 +64,32 @@ class Form {
     // }
 
     handleKeyDown(e, form) {
-        if (e.code !== 'Enter') {
-            return;
+        if (e.code === 'Enter') {
+            e.preventDefault()
+            form.handleSubmit(e)
         }
-        e.preventDefault()
-        form.handleSubmit(e)
-
     }
 
     addEventListeners(form) {
-        document.querySelector('.form').addEventListener('submit', this.handleSubmit)
+        const formDoc = document.querySelector('.form')
+        formDoc.addEventListener('submit', this.handleSubmit)
         document.querySelector('textarea').addEventListener('keydown', (e) => {
             this.handleKeyDown(e, form)
+        })
+        formDoc.addEventListener('focusout', (e) => {
+            if (e.target.closest('#username')) {
+                if (!e.target.value) {
+                    document.getElementById('username_error').innerHTML = 'Enter your name'
+                    document.getElementById('username_error').style.display = 'block'
+                }
+            }
+
+            if (e.target.closest('#text')) {
+                if (!e.target.value) {
+                    document.getElementById('text_error').innerHTML = 'Enter your comment'
+                    document.getElementById('text_error').style.display = 'block'
+                }
+            }
         })
     }
 

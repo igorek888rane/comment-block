@@ -13,10 +13,11 @@ class Input {
         <div class="form__input input_container">
             <label>${label}</label>
             <input
+            id = ${name}
             type=${type}
-            name =${name} 
+            name=${name} 
             placeholder=${placeholder}>
-            <div class=form__error >error</div>
+            <div  id =${name+'_error'} class=form__error></div>
         </div>
         `)
     }
@@ -24,6 +25,7 @@ class Input {
     get elem() {
         return this._render(this.name, this.type, this.placeholder, this.label)
     }
+
 }
 
 export default Input

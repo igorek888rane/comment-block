@@ -11,12 +11,12 @@ class TextArea {
         return createElement(`
         <div class="form__textarea input_container">
            <div class="textarea">
-            <textarea name = ${name} placeholder=${placeholder}></textarea>
+            <textarea  id=${name} name = ${name} placeholder=${placeholder}></textarea>
             <button type="submit">
                 <img src=${send} alt="send message"/>
             </button>
              </div>
-            <div class='form__error error_text'>error</div>
+            <div id = ${name +'_error'} class='form__error error_text'></div>
         </div>
         `)
     }

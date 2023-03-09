@@ -2,9 +2,9 @@
   .form {
     display: flex;
     flex-direction: column;
-    grid-gap: 25px;
+    grid-gap: 30px;
     margin: 15px auto;
-    padding: 25px;
+    padding: 30px;
     background-color: #ffff;
 
     .input_container {
@@ -64,11 +64,14 @@
       }
 
       .form__error {
+        display: none;
         position: absolute;
         top: 70px;
+
         color: red;
-        &.error_text{
-          top:50px
+
+        &.error_text {
+          top: 50px
         }
       }
     }
