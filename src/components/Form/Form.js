@@ -49,6 +49,8 @@ class Form {
             form.username.value = ''
             form.date.value = ''
             form.text.value = ''
+            form.username.blur()
+            form.text.blur()
         }
 
     }
@@ -68,29 +70,39 @@ class Form {
             e.preventDefault()
             form.handleSubmit(e)
         }
+        if (e.target.closest('#username')) {
+            document.getElementById('username_error').innerHTML = ''
+            document.getElementById('username_error').style.display = 'none'
+        }
+        if (e.target.closest('#text')) {
+            document.getElementById('text_error').innerHTML = ''
+            document.getElementById('text_error').style.display = 'none'
+        }
+    }
+
+    handleValidate(e) {
+        if (e.target.closest('#username')) {
+            if (!e.target.value) {
+                document.getElementById('username_error').innerHTML = 'Enter your name'
+                document.getElementById('username_error').style.display = 'block'
+            }
+        }
+
+        if (e.target.closest('#text')) {
+            if (!e.target.value) {
+                document.getElementById('text_error').innerHTML = 'Enter your comment'
+                document.getElementById('text_error').style.display = 'block'
+            }
+        }
     }
 
     addEventListeners(form) {
         const formDoc = document.querySelector('.form')
         formDoc.addEventListener('submit', this.handleSubmit)
-        document.querySelector('textarea').addEventListener('keydown', (e) => {
+        formDoc.addEventListener('keydown', (e) => {
             this.handleKeyDown(e, form)
         })
-        formDoc.addEventListener('focusout', (e) => {
-            if (e.target.closest('#username')) {
-                if (!e.target.value) {
-                    document.getElementById('username_error').innerHTML = 'Enter your name'
-                    document.getElementById('username_error').style.display = 'block'
-                }
-            }
-
-            if (e.target.closest('#text')) {
-                if (!e.target.value) {
-                    document.getElementById('text_error').innerHTML = 'Enter your comment'
-                    document.getElementById('text_error').style.display = 'block'
-                }
-            }
-        })
+        formDoc.addEventListener('focusout', this.handleValidate)
     }
 
 
