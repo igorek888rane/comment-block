@@ -32,7 +32,9 @@ class Form {
         const form = document.forms.comment
         if (form.username.value && form.text.value) {
             let comments = getComments()
-            const minutes = String(new Date().getMinutes()).length === 1 ? '0' + new Date().getMinutes() : new Date().getMinutes()
+            const minutes = String(new Date().getMinutes()).length === 1
+                ? '0' + new Date().getMinutes()
+                : new Date().getMinutes()
             const comment = {
                 id: Date.now(),
                 username: form.username.value,
@@ -43,7 +45,6 @@ class Form {
                 }
             }
             comments.push(comment)
-            console.log(String(new Date().getMinutes()).length === 1 ? '0' + new Date().getMinutes() : new Date().getMinutes());
             localStorage.setItem('comments', JSON.stringify(comments))
             document.querySelector('.comment').append(new CommentEl(comment).elem)
             form.username.value = ''
@@ -55,43 +56,41 @@ class Form {
 
     }
 
-    // dateTimeReturn(dateInput) {
-    //     const date = dateInput ? new Date(dateInput).getTime() : Date.now()
-    //     const minutes = String(new Date().getMinutes()).length === 1 ? '0' + new Date().getMinutes() : new Date().getMinutes()
-    //     return {
-    //         date,
-    //         time: `${new Date().getHours()} : ${minutes}`
-    //     }
-
-    // }
-
     handleKeyDown(e, form) {
         if (e.code === 'Enter') {
             e.preventDefault()
             form.handleSubmit(e)
         }
         if (e.target.closest('#username')) {
-            document.getElementById('username_error').innerHTML = ''
-            document.getElementById('username_error').style.display = 'none'
+            const username = document.getElementById('username_error')
+            username.innerHTML = ''
+            username.style.display = 'none'
+
         }
         if (e.target.closest('#text')) {
-            document.getElementById('text_error').innerHTML = ''
-            document.getElementById('text_error').style.display = 'none'
+            const text = document.getElementById('text_error')
+            text.innerHTML = ''
+            text.style.display = 'none'
         }
     }
 
     handleValidate(e) {
         if (e.target.closest('#username')) {
+            const username = document.getElementById('username_error')
             if (!e.target.value) {
-                document.getElementById('username_error').innerHTML = 'Enter your name'
-                document.getElementById('username_error').style.display = 'block'
+                username.innerHTML = 'Enter your name'
+                username.style.display = 'block'
             }
+
+
         }
 
         if (e.target.closest('#text')) {
+            const text = document.getElementById('text_error')
             if (!e.target.value) {
-                document.getElementById('text_error').innerHTML = 'Enter your comment'
-                document.getElementById('text_error').style.display = 'block'
+                text.innerHTML = 'Enter your comment'
+                text.style.display = 'block'
+
             }
         }
     }
