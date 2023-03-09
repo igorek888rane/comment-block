@@ -17,7 +17,10 @@ class CommentEl {
                 <div class="comment__info">
                     <div class="comment__header">
                            <span class="comment__name">${this.comment.username}</span>
-                           <span class="comment__date">${this.comment.date ? this.comment.date : new Date().getFullYear()}</span>
+                           <span class="comment__date">
+                                ${this.relativeTimeCount(this.comment.dateTime.date)}
+                                ${this.comment.dateTime.time}
+                           </span>
                     </div>
                     <p class="comment__text">${this.comment.text}</p>
                     <div class="comment__action">
@@ -32,6 +35,18 @@ class CommentEl {
     get elem() {
         return this._render()
     }
+
+    relativeTimeCount(date) {
+
+        const rtf = new Intl.RelativeTimeFormat('en', {
+            numeric: 'auto',
+            style: 'long',
+            localeMatcher: 'best fit'
+        })
+        return rtf
+            .format(new Date(date).getDay() - new Date(Date.now()).getDay(), 'day')
+    }
+
 }
 
 export default CommentEl
