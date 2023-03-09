@@ -26,14 +26,22 @@ class CommentArea {
     delete(e) {
         if (e.target.closest('.comment__delete')) {
             const id = e.target.dataset.id
-            let comments = getComments().filter(el => el.id === id)
-            localStorage.setItem('comments', JSON.stringify(comments))
+            console.log(id);
+            let comments = getComments().filter(com => com.id !== +id)
+            console.log(comments);
+
             document.getElementById(id).remove()
+            localStorage.setItem('comments', JSON.stringify(comments))
         }
+    }
+
+    like(e) {
+
     }
 
     addEventListeners() {
         document.querySelector('.comment').addEventListener('click', this.delete)
+        document.querySelector('.comment').addEventListener('click', this.like)
     }
 }
 

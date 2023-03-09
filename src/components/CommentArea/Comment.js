@@ -21,7 +21,7 @@ class CommentEl {
                     </div>
                     <p class="comment__text">${this.comment.text}</p>
                     <div class="comment__action">
-                    <img  class="comment__like" src=${like} alt="">
+                    <img data-id=${this.comment.id} class="comment__like" src=${like} alt="">
                     <img data-id=${this.comment.id} class="comment__delete" src=${basket} alt="">
                     </div>
                 </div>
