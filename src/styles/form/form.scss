@@ -2,52 +2,77 @@
   .form {
     display: flex;
     flex-direction: column;
-    grid-gap: 15px;
+    grid-gap: 25px;
     margin: 15px auto;
     padding: 25px;
     background-color: #ffff;
-    .form__textarea {
-      display: flex;
-      textarea {
-        width: 100%;
-        resize: none;
-        outline: none;
-        background-color: transparent;
-        color: $textColor;
-        font-size: 20px;
-        word-wrap: break-word;
-        border: 1px solid;
-        overflow-y: auto;
-        overflow-x: hidden;
 
-        &::placeholder {
-          padding: 5px;
+    .input_container {
+      position: relative;
+
+      &.form__textarea {
+        display: flex;
+        flex-direction: column;
+
+        .textarea {
+          display: flex;
+
+          textarea {
+            width: 100%;
+            resize: none;
+            outline: none;
+            background-color: transparent;
+            color: $textColor;
+            font-size: 20px;
+            word-wrap: break-word;
+            border: 1px solid;
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            &::placeholder {
+              padding: 5px;
+            }
+
+            &::-webkit-scrollbar {
+              width: 0;
+            }
+
+          }
+
+          button {
+            background-color: transparent;
+            cursor: pointer;
+            margin-left: 5px;
+
+            img {
+              width: 40px;
+              height: 40px;
+            }
+          }
         }
+      }
 
-        &::-webkit-scrollbar{
-          width: 0;
+      &.form__input {
+        input {
+          width: 100%;
+          outline: none;
+          background-color: transparent;
+          color: $textColor;
+          border: 1px solid;
+          padding: 10px;
         }
+      }
 
-      }
-    button{
-      background-color: transparent;
-      cursor: pointer;
-      margin-left: 5px;
-      img{
-        width: 40px;
-        height: 40px;
-      }
-    }
-    }
-    .form__input{
-      input{
-        width: 100%;
-        outline: none;
-        background-color: transparent;
-        color: $textColor;
-        border: 1px solid;
-        padding: 10px;
+      .form__error {
+        position: absolute;
+        top: 70px;
+        color: red;
+        &.error_text{
+          top:50px
+        }
       }
     }
+
+
   }
 }

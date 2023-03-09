@@ -2,24 +2,27 @@ import createElement from '../../utils/createElement'
 import send from '../../img/form/send_icon.svg'
 
 class TextArea {
-    constructor(name,placeholder) {
+    constructor(name, placeholder) {
         this.name = name
         this.placeholder = placeholder
     }
 
-    _render(name,placeholder) {
+    _render(name, placeholder) {
         return createElement(`
-        <div class="form__textarea">
+        <div class="form__textarea input_container">
+           <div class="textarea">
             <textarea name = ${name} placeholder=${placeholder}></textarea>
             <button type="submit">
                 <img src=${send} alt="send message"/>
             </button>
+             </div>
+            <div class='form__error error_text'>error</div>
         </div>
         `)
     }
 
     get elem() {
-        return this._render(this.name,this.placeholder)
+        return this._render(this.name, this.placeholder)
     }
 }
 

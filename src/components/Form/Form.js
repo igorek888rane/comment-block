@@ -27,17 +27,18 @@ class Form {
         const form = document.forms.comment
         if (form.username.value && form.text.value) {
             let comments = getComments()
+            const minutes = String(new Date().getMinutes()).length === 1 ? '0' + new Date().getMinutes() : new Date().getMinutes()
             const comment = {
                 id: Date.now(),
                 username: form.username.value,
                 text: form.text.value,
                 dateTime: {
                     date: form.date.value ? new Date(form.date.value).getTime() : Date.now(),
-                    time: ` ${new Date().getHours()} : ${new Date().getMinutes()}`
+                    time: ` ${new Date().getHours()} : ${minutes}`
                 }
             }
             comments.push(comment)
-            console.log(String(new Date().getMinutes()).length === 1 ? Number('0' + new Date().getMinutes()) : new Date().getMinutes());
+            console.log(String(new Date().getMinutes()).length === 1 ? '0' + new Date().getMinutes() : new Date().getMinutes());
             localStorage.setItem('comments', JSON.stringify(comments))
             document.querySelector('.comment').append(new CommentEl(comment).elem)
             form.username.value = ''
@@ -46,6 +47,16 @@ class Form {
         }
 
     }
+
+    // dateTimeReturn(dateInput) {
+    //     const date = dateInput ? new Date(dateInput).getTime() : Date.now()
+    //     const minutes = String(new Date().getMinutes()).length === 1 ? '0' + new Date().getMinutes() : new Date().getMinutes()
+    //     return {
+    //         date,
+    //         time: `${new Date().getHours()} : ${minutes}`
+    //     }
+
+    // }
 
     handleKeyDown(e, form) {
         if (e.code !== 'Enter') {

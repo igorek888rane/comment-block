@@ -10,12 +10,13 @@ class Input {
 
     _render(name, type, placeholder, label) {
         return createElement(`
-        <div class="form__input">
+        <div class="form__input input_container">
             <label>${label}</label>
             <input
             type=${type}
             name =${name} 
             placeholder=${placeholder}>
+            <div class=form__error >error</div>
         </div>
         `)
     }
