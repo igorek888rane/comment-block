@@ -13,7 +13,7 @@ class Form {
                 'Enter:username',
                 'Username')
         const inputDate = new Input('date', 'date', '', 'Date')
-        const textArea = new TextArea('text', 'Enter-message')
+        const textArea = new TextArea('text', 'Enter-comment')
 
         return createElement(`
             <form  class="form" name = 'comment'>
@@ -52,6 +52,20 @@ class Form {
             form.text.value = ''
             form.username.blur()
             form.text.blur()
+        } else {
+            const arr = ['text', 'username']
+            // console.log(form[arr[0]].value);
+            for (let el of arr) {
+                if (!form[el].value) {
+                    console.log(form[el].value);
+                    document.getElementById(`${el}_error`).style.display = 'block'
+                    document.getElementById(`${el}_error`).innerHTML = 'Enter your ' + el
+                }
+            }
+
+            // const username = document.getElementById('username_error')
+            // const text = document.getElementById('text_error')
+
         }
 
     }
@@ -78,7 +92,7 @@ class Form {
         if (e.target.closest('#username')) {
             const username = document.getElementById('username_error')
             if (!e.target.value) {
-                username.innerHTML = 'Enter your name'
+                username.innerHTML = 'Enter your username'
                 username.style.display = 'block'
             }
 
@@ -88,7 +102,7 @@ class Form {
         if (e.target.closest('#text')) {
             const text = document.getElementById('text_error')
             if (!e.target.value) {
-                text.innerHTML = 'Enter your comment'
+                text.innerHTML = 'Enter your text'
                 text.style.display = 'block'
 
             }
