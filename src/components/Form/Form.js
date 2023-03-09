@@ -53,8 +53,8 @@ class Form {
             form.username.blur()
             form.text.blur()
         } else {
+
             const arr = ['text', 'username']
-            // console.log(form[arr[0]].value);
             for (let el of arr) {
                 if (!form[el].value) {
                     console.log(form[el].value);
@@ -62,9 +62,6 @@ class Form {
                     document.getElementById(`${el}_error`).innerHTML = 'Enter your ' + el
                 }
             }
-
-            // const username = document.getElementById('username_error')
-            // const text = document.getElementById('text_error')
 
         }
 
