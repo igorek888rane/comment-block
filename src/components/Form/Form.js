@@ -32,8 +32,7 @@ class Form {
         const form = document.forms.comment
         if (form.username.value && form.text.value) {
             if (form.username.value.length < 3 || form.username.value.length > 10) {
-                document.getElementById(`username_error`).style.display = 'block'
-                document.getElementById(`username_error`).innerHTML = 'Must be greater than 3 and less than 10  '
+                this.setError('username', 'block', `Must be greater than 3 and less than 10`)
             } else {
                 let comments = getComments()
                 const minutes = String(new Date().getMinutes()).length === 1
@@ -62,9 +61,7 @@ class Form {
             const arr = ['text', 'username']
             for (let el of arr) {
                 if (!form[el].value) {
-                    console.log(form[el].value);
-                    document.getElementById(`${el}_error`).style.display = 'block'
-                    document.getElementById(`${el}_error`).innerHTML = 'Enter your ' + el
+                    this.setError(el, 'block', `Enter your ${el}`)
                 }
             }
 
@@ -78,10 +75,7 @@ class Form {
             form.handleSubmit(e)
         }
         if (e.target.closest('#username')) {
-            const username = document.getElementById('username_error')
-            username.innerHTML = ''
-            username.style.display = 'none'
-
+            this.setError('username', 'none', '')
         }
         if (e.target.closest('#text')) {
             const text = document.getElementById('text_error')
@@ -92,32 +86,34 @@ class Form {
 
     handleValidate(e) {
         if (e.target.closest('#username')) {
-            const username = document.getElementById('username_error')
             if (!e.target.value) {
-                username.innerHTML = 'Enter your username'
-                username.style.display = 'block'
+                this.setError('username', 'block', 'Enter your username')
             }
-
-
         }
 
         if (e.target.closest('#text')) {
-            const text = document.getElementById('text_error')
             if (!e.target.value) {
-                text.innerHTML = 'Enter your text'
-                text.style.display = 'block'
-
+                this.setError('text', 'block', 'Enter your text')
             }
         }
     }
 
+    setError(el, display, text) {
+        document.getElementById(`${el}_error`).style.display = display
+        document.getElementById(`${el}_error`).innerHTML = text
+    }
+
     addEventListeners(form) {
         const formDoc = document.querySelector('.form')
-        formDoc.addEventListener('submit', this.handleSubmit)
+        formDoc.addEventListener('submit', (e) => {
+            this.handleSubmit(e)
+        })
         formDoc.addEventListener('keydown', (e) => {
             this.handleKeyDown(e, form)
         })
-        formDoc.addEventListener('focusout', this.handleValidate)
+        formDoc.addEventListener('focusout', (e) => {
+            this.handleValidate(e)
+        })
     }
 
 
