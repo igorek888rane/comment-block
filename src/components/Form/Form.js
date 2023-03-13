@@ -31,29 +31,34 @@ class Form {
         e.preventDefault()
         const form = document.forms.comment
         if (form.username.value && form.text.value) {
-            let comments = getComments()
-            const minutes = String(new Date().getMinutes()).length === 1
-                ? '0' + new Date().getMinutes()
-                : new Date().getMinutes()
-            const comment = {
-                id: Date.now(),
-                username: form.username.value,
-                text: form.text.value,
-                dateTime: {
-                    date: form.date.value ? new Date(form.date.value).getTime() : Date.now(),
-                    time: ` ${new Date().getHours()} : ${minutes}`
+            if (form.username.value.length < 3 || form.username.value.length > 10) {
+                document.getElementById(`username_error`).style.display = 'block'
+                document.getElementById(`username_error`).innerHTML = 'Must be greater than 3 and less than 10  '
+            } else {
+                let comments = getComments()
+                const minutes = String(new Date().getMinutes()).length === 1
+                    ? '0' + new Date().getMinutes()
+                    : new Date().getMinutes()
+                const comment = {
+                    id: Date.now(),
+                    username: form.username.value,
+                    text: form.text.value,
+                    dateTime: {
+                        date: form.date.value ? new Date(form.date.value).getTime() : Date.now(),
+                        time: ` ${new Date().getHours()} : ${minutes}`
+                    }
                 }
+                comments.push(comment)
+                localStorage.setItem('comments', JSON.stringify(comments))
+                document.querySelector('.comment').append(new CommentEl(comment).elem)
+                form.username.value = ''
+                form.date.value = ''
+                form.text.value = ''
+                form.username.blur()
+                form.text.blur()
             }
-            comments.push(comment)
-            localStorage.setItem('comments', JSON.stringify(comments))
-            document.querySelector('.comment').append(new CommentEl(comment).elem)
-            form.username.value = ''
-            form.date.value = ''
-            form.text.value = ''
-            form.username.blur()
-            form.text.blur()
-        } else {
 
+        } else {
             const arr = ['text', 'username']
             for (let el of arr) {
                 if (!form[el].value) {
