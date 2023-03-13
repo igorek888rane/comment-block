@@ -4,14 +4,13 @@
     flex-direction: column;
     grid-gap: 15px;
     margin: 15px auto;
-    padding: 25px;
-    background-color: #ffff;
-
 
     .comment__item {
       display: flex;
       align-items: center;
       grid-gap: 10px;
+      padding: 10px;
+      background-color: #ffff;
 
       .comment__avatar {
         display: flex;
