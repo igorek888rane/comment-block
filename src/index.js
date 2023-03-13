@@ -21,7 +21,7 @@ document.querySelector('#app').innerHTML = `
 
 
 commentArea.addEventListeners()
-form.addEventListeners(form)
+form.addEventListeners()
 
 
 

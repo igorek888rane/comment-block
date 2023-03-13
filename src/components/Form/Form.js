@@ -69,10 +69,10 @@ class Form {
 
     }
 
-    handleKeyDown(e, form) {
+    handleKeyDown(e) {
         if (e.code === 'Enter') {
             e.preventDefault()
-            form.handleSubmit(e)
+            this.handleSubmit(e)
         }
         if (e.target.closest('#username')) {
             this.setError('username', 'none', '')
@@ -103,13 +103,13 @@ class Form {
         document.getElementById(`${el}_error`).innerHTML = text
     }
 
-    addEventListeners(form) {
+    addEventListeners() {
         const formDoc = document.querySelector('.form')
         formDoc.addEventListener('submit', (e) => {
             this.handleSubmit(e)
         })
         formDoc.addEventListener('keydown', (e) => {
-            this.handleKeyDown(e, form)
+            this.handleKeyDown(e)
         })
         formDoc.addEventListener('focusout', (e) => {
             this.handleValidate(e)
