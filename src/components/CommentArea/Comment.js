@@ -44,7 +44,7 @@ class CommentEl {
             localeMatcher: 'best fit'
         })
         return rtf
-            .format(new Date(date).getDay() - new Date(Date.now()).getDay(), 'day')
+            .format(new Date(date).getDate() - new Date(Date.now()).getDate(), 'day')
     }
 
 }
