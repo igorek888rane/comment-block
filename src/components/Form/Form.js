@@ -78,13 +78,11 @@ class Form {
             this.setError('username', 'none', '')
         }
         if (e.target.closest('#text')) {
-            const text = document.getElementById('text_error')
-            text.innerHTML = ''
-            text.style.display = 'none'
+            this.setError('text', 'none', '')
         }
     }
 
-    handleValidate(e) {
+    handleBlur(e) {
         if (e.target.closest('#username')) {
             if (!e.target.value) {
                 this.setError('username', 'block', 'Enter your username')
@@ -112,7 +110,7 @@ class Form {
             this.handleKeyDown(e)
         })
         formDoc.addEventListener('focusout', (e) => {
-            this.handleValidate(e)
+            this.handleBlur(e)
         })
     }
 
